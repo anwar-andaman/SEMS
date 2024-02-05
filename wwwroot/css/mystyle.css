@@ -1,0 +1,29 @@
+﻿.aligncenter
+{
+    text-align:center;
+}
+body {
+    background-image: url("headerbg.png");
+}
+.headerrow {
+    background-image: url("headerbg.png");
+    background-color: lightcyan;
+}
+.menubutton {
+    border:none;
+       min-height: 50px;
+       color:greenyellow;
+}
+.mymenuitem {
+    
+    color:purple;
+}
+.fset{
+    border-inline:inset;
+    border-top:dashed;
+    
+}
+.pageheading{
+    text-align:center;
+    color:red;
+}

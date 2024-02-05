@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SEMS</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SEMS.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/mystyle.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+
+        <div class="flex-container">
+            <!--  <div class="row">
+                <!--<div class="col headerrow" style="background-image:url('../images/headerbg.png');">
+                <div class="col headerrow">
+                    <h1 class="aligncenter" style="color:darkred; text-align:center;">State Election Commission</h1>
+                    <h2 class="aligncenter" style="color:maroon; text-align:center;">Andaman & Nicobar Islands</h2>
+                </div>
+             </div>-->
+            <!--<div class="row" style="background-color:green; color:white; font-size:larger; font-display:block; background-image:url('../images/scrollingdiv.jpg');">-->
+            <div class="row">
+
+                <div class="row" style="background-image:url('../images/headerbg1.jpg'); background-repeat:no-repeat; background-size:cover;">
+
+                    <div class="col">
+
+                        <h1 class="aligncenter" style="color:white;">State Election Commission</h1>
+                        <h2 class="aligncenter" style="color:white;">Andaman & Nicobar Islands</h2>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row" style="background-image:url('../images/headerbg2.jpg');background-color:darkcyan; color:white; font-size:larger; font-display:block;">
+                <marquee style="color:greenyellow"><i><b>State Election Management System</b></i></marquee>
+
+            </div>
+        </div>
+
+    </header>   
+
+    <div class="flex-container" style="min-height:100vh; ">
+        <div class="row">
+            <div class="col-sm-2" style="min-height:100vh;background-image:url('../images/headerbg1.jpg'); background-color:darkcyan; ">
+              
+                <div class="btn-group-vertical dropend d-flex" role="group">
+
+                    @{
+                        if (Context.Session.GetString("logUserType") == "ADMIN" || Context.Session.GetString("logUserType") == "CONTROL")
+                        {
+                            <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle menubutton" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Admin
+                            </button>
+                        }
+                        else
+                        {
+                            <button disabled id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle menubutton" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Admin
+                            </button>
+                        }
+                    }
+                    <div class="dropdown-menu " aria-labelledby="btnGroupDrop1">
+                        <a class="dropdown-item mymenuitem" href="/Random/DeptEntry">Manage Departments </a>
+                        <a class="dropdown-item mymenuitem" href="/Random/TopUsers">Manage Top Level Users</a>
+                        <a class="dropdown-item mymenuitem" href="/Random/BackupDB">Backup Database</a>
+                        <a class="dropdown-item mymenuitem" href="/Random/FreezeData">Freeze/Unfreeze Data</a>
+                        <a class="dropdown-item mymenuitem" href="/Random/EnableDisableFeatures">Enable/Disable Application Features</a>
+                    </div>
+                </div>
+
+                <div class="btn-group-vertical dropend d-flex" role="group">
+                    <button id="btnGroupDrop2" type="button" class="btn btn-outline-primary dropdown-toggle menubutton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Master Data
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
+                        <a class="dropdown-item mymenuitem" href="/Random/ManageOffice">Manage Offices & Sub-Offices</a>
+                        <a class="dropdown-item mymenuitem" href="/Random/OfficeUsers">Manage Users</a>
+                        @{
+                            if (Context.Session.GetString("logUserType") == "ADMIN" || Context.Session.GetString("logUserType") == "CONTROL")
+                            {
+                                <a class="dropdown-item mymenuitem" href="/Random/DesignationMaster">Manage Designations</a>
+                            }
+                            else
+                            {
+                                <a class="dropdown-item mymenuitem" href="/Random/DeptWiseDesignation">Manage Designations</a>
+                            }
+                            <a class="dropdown-item mymenuitem" href="/Random/EVM_Master">EVM Master Entry</a>
+                        }
+                    </div>
+                </div>
+
+                <div class="btn-group-vertical dropend d-flex" role="group">
+                    <button id="btnGroupDrop3" type="button" class="btn btn-outline-primary dropdown-toggle menubutton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Control
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop3">
+                        <a class="dropdown-item mymenuitem" href="/Random/MarkEVM">Mark Faulty & Training EVMs</a>
+                        <a class="dropdown-item mymenuitem" href="/Random/MarkEmployee">Mark Exemption from Poll Duty</a>
+                        <a class="dropdown-item mymenuitem" href="#">Marking of Officials already on Election Duty</a>
+                    </div>
+                </div>
+
+                <div class="btn-group-vertical dropend d-flex" role="group">
+                    <button id="btnGroupDrop4" type="button" class="btn btn-outline-primary dropdown-toggle menubutton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Randomization
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop4">
+                        <a class="dropdown-item mymenuitem" href="/Random/EVM_FirstRandomization">EVM First Randomization</a>
+                        <a class="dropdown-item mymenuitem" href="/Random/EVM_SecondRandomization">EVM Second Randomization</a>
+                        <a class="dropdown-item mymenuitem" href="/Random/PO_FirstRandomization">Polling Official First Randomization</a>
+                        <a class="dropdown-item mymenuitem" href="/Random/PO_SecondRandomization">Polling Official Second Randomization</a>
+                        <a class="dropdown-item mymenuitem" href="/Random/PO_ThirdRandomization">Polling Official Third Randomization</a>
+                    </div>
+                </div>
+
+                <div class="btn-group-vertical dropend d-flex" role="group">
+                    <button id="btnGroupDrop6" type="button" class="btn btn-outline-primary dropdown-toggle menubutton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Data Entry
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop6">
+                        <a class="dropdown-item mymenuitem" href="/Random/EmployeeEntry">Employee Details</a>
+                    </div>
+                </div>
+
+                <div class="btn-group-vertical dropend d-flex" role="group">
+
+                    <button id="btnGroupDrop5" type="button" class="btn btn-outline-primary dropdown-toggle menubutton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Reports
+                    </button>
+                </div>
+
+                <div class="btn-group-vertical dropend d-flex" role="group">
+
+                    <a id="btnGroupDrop6" href="/Random/Login" type="button" class="btn btn-outline-primary menubutton " aria-haspopup="true" aria-expanded="false">
+                        Log Out
+                    </a>
+
+                </div>
+              
+            </div>
+            <div class="col-10" style="background-color:lightcyan">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+
+    </div>
+
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - State Election Managment System
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
